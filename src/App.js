@@ -1,25 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
+import Header from './components/layout/Header';
+import Dashboard from './components/Dashboard';
+import TransAdd from './components/TransAdd';
+import TransList from './components/TransList';
+import { TransactionsContextProvider } from './components/context/TransactionsContext';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TransactionsContextProvider>
+      <div className='App'>
+        <Header />
+
+        <div className='container'>
+          <div className='trans-management-container'>
+            <Dashboard />
+            <TransAdd />
+          </div>
+          <div className='transaction-list-container'>
+            <TransList />
+          </div>
+        </div>
+      </div>
+    </TransactionsContextProvider>
   );
 }
 
