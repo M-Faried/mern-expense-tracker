@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { TransactionsContext } from './context/TransactionsContext';
+import { TransactionsContext } from '../context/TransactionsContext';
 
 const TransAdd = () => {
   const [label, setLabel] = useState('');

@@ -3,7 +3,7 @@ import Header from './components/layout/Header';
 import Dashboard from './components/Dashboard';
 import TransAdd from './components/TransAdd';
 import TransList from './components/TransList';
-import { TransactionsContextProvider } from './components/context/TransactionsContext';
+import { TransactionsContextProvider } from './context/TransactionsContext';
 import './App.css';
 
 function App() {

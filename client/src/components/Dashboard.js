@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TransactionsContext } from './context/TransactionsContext';
+import { TransactionsContext } from '../context/TransactionsContext';
 
 const Dashboard = () => {
   const { transactions } = useContext(TransactionsContext);
