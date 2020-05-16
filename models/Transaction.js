@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 //The schema of the data base objects
 const TransactionSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
+    required: true,
+  },
   label: {
     type: String,
     trim: true,

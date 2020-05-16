@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const colors = require('colors');
 
 const connectDB = async () => {
   try {
@@ -10,7 +9,8 @@ const connectDB = async () => {
     });
 
     console.log(
-      `MongoDB Connected: ${conn.connection.host}`.cyan.underline.bold
+      `MongoDB Connected: ${conn.connection.host} DB: ${conn.connection.db.databaseName}`
+        .cyan.underline.bold
     );
   } catch (err) {
     console.log(`Error: ${err.message}`.red);

@@ -12,7 +12,7 @@ export const TransactionsContextProvider = (props) => {
     setLoading(true);
 
     try {
-      const res = await axios.get('/api/v1/transactions');
+      const res = await axios.get('/api/transactions');
       setTransactions(res.data.data);
     } catch (err) {
       console.log(err.response.data.error);
@@ -42,7 +42,7 @@ export const TransactionsContextProvider = (props) => {
     };
     const transaction = { label, amount };
     try {
-      const res = await axios.post(`/api/v1/transactions`, transaction, config);
+      const res = await axios.post(`/api/transactions`, transaction, config);
       const updatedTransactions = [res.data.data, ...transactions];
       setTransactions(updatedTransactions);
     } catch (err) {
@@ -60,7 +60,7 @@ export const TransactionsContextProvider = (props) => {
     setLoading(true);
 
     try {
-      await axios.delete(`/api/v1/transactions/${id}`);
+      await axios.delete(`/api/transactions/${id}`);
       const updatedTransactions = transactions.filter((tr) => tr._id !== id);
       setTransactions(updatedTransactions);
     } catch (err) {
