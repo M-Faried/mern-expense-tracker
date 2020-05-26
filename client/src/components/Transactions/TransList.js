@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, Fragment } from 'react';
+
 import TransItem from './TransItem';
-import Spinner from './layout/Spinner';
-import { TransactionsContext } from '../context/TransactionsContext';
+import Spinner from '../layout/Spinner';
+
+import { TransactionsContext } from '../../context/TransactionsContext';
 
 const TransList = () => {
-  const { transactions, loading, loadDatabaseTransactions } = useContext(
+  const { transactions, isLoading, loadDatabaseTransactions } = useContext(
     TransactionsContext
   );
 
@@ -13,7 +15,7 @@ const TransList = () => {
     // eslint-disable-next-line
   }, []);
 
-  if (loading) {
+  if (isLoading) {
     return (
       <Fragment>
         <h3>History</h3>

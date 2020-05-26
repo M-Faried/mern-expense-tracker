@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { TransactionsContext } from '../context/TransactionsContext';
+import { TransactionsContext } from '../../context/TransactionsContext';
 
 const TransAdd = () => {
   const [label, setLabel] = useState('');
@@ -27,7 +27,7 @@ const TransAdd = () => {
   return (
     <div className='add-transaction-container'>
       <h3>Add New Transaction</h3>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className='form-group'>
         <div className='form-control'>
           <label>Label</label>
           <input

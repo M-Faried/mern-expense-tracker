@@ -4,88 +4,80 @@ import axios from 'axios';
 export const TransactionsContext = createContext();
 
 export const TransactionsContextProvider = (props) => {
-  const [transactions, setTransactions] = useState([]);
-  const [loading, setLoading] = useState(false);
-  // const [dataLoaded, setDataLoaded] = useState(false);
+  const [state, setState] = useState({
+    transactions: [],
+    isLoading: false,
+  });
 
   const loadDatabaseTransactions = async () => {
-    setLoading(true);
-
     try {
+      setState((ps) => ({ ...ps, isLoading: true }));
       const res = await axios.get('/api/transactions');
-      setTransactions(res.data.data);
+      setState((ps) => ({
+        ...ps,
+        isLoading: false,
+        transactions: res.data.data,
+      }));
     } catch (err) {
+      setState((ps) => ({ ...ps, isLoading: false }));
       console.log(err.response.data.error);
     }
-
-    setLoading(false);
   };
 
   const addTransaction = async (label, amount) => {
     if (!label) return;
     if (!amount || +amount === 0) return;
 
-    // const newTransaction = {
-    //   id: uuid.v4(),
-    //   label,
-    //   amount,
-    // };
-    // const updatedTransactions = [newTransaction, ...transactions];
-    // setTransactions(updatedTransactions);
-    // saveTransactions(updatedTransactions);
-
-    setLoading(true);
     const config = {
       headers: {
         'Content-Type': 'application/json',
       },
     };
     const transaction = { label, amount };
+
     try {
+      setState((ps) => ({ ...ps, isLoading: true }));
       const res = await axios.post(`/api/transactions`, transaction, config);
-      const updatedTransactions = [res.data.data, ...transactions];
-      setTransactions(updatedTransactions);
+
+      setState((ps) => ({
+        ...ps,
+        isLoading: false,
+        transactions: [res.data.addedTransaction, ...ps.transactions],
+      }));
     } catch (err) {
+      setState((ps) => ({ ...ps, isLoading: false }));
       console.log(err.response.data.error);
     }
-
-    setLoading(false);
   };
 
   const deleteTransaction = async (id) => {
-    // const updatedTransactions = transactions.filter((tr) => tr.id !== id);
-    // setTransactions(updatedTransactions);
-    // saveTransactions(updatedTransactions);
-
-    setLoading(true);
-
     try {
-      await axios.delete(`/api/transactions/${id}`);
-      const updatedTransactions = transactions.filter((tr) => tr._id !== id);
-      setTransactions(updatedTransactions);
+      setState((ps) => ({ ...ps, isLoading: true }));
+
+      const res = await axios.delete(`/api/transactions/${id}`);
+
+      setState((ps) => ({
+        ...ps,
+        isLoading: false,
+        transactions: ps.transactions.filter(
+          (tr) => tr._id !== res.data.deletedTransaction._id
+        ),
+      }));
     } catch (err) {
+      setState((ps) => ({ ...ps, isLoading: false }));
       console.log(err.response.data.error);
     }
-
-    setLoading(false);
   };
 
-  // if (!dataLoaded) {
-  //   const storedData = getSavedTransactions();
-  //   setTransactions(storedData);
-  //   setDataLoaded(true);
-  // }
-
-  const providedServices = {
-    transactions,
-    loading,
+  const services = {
+    ...state,
     loadDatabaseTransactions,
     addTransaction,
     deleteTransaction,
   };
 
   return (
-    <TransactionsContext.Provider value={providedServices}>
+    <TransactionsContext.Provider value={services}>
       {props.children}
     </TransactionsContext.Provider>
   );
@@ -107,6 +99,6 @@ export const TransactionsContextProvider = (props) => {
 //   if (storedTransactions) return storedTransactions;
 //   else return SAMPLE_TRANSACTIONS;
 // }
-function saveTransactions(transactions) {
-  localStorage.setItem('simple-expense-tracker', JSON.stringify(transactions));
-}
+// function saveTransactions(transactions) {
+//   localStorage.setItem('simple-expense-tracker', JSON.stringify(transactions));
+// }

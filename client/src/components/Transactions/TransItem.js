@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import { TransactionsContext } from '../context/TransactionsContext';
 import PropTypes from 'prop-types';
+
+import { TransactionsContext } from '../../context/TransactionsContext';
 
 export const TransItem = (props) => {
   const { deleteTransaction } = useContext(TransactionsContext);

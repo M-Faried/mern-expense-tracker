@@ -1,28 +1,39 @@
 import React from 'react';
-import Header from './components/layout/Header';
-import Dashboard from './components/Dashboard';
-import TransAdd from './components/TransAdd';
-import TransList from './components/TransList';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import Navbar from './components/layout/Navbar';
+import Home from './components/pages/Home';
+import About from './components/pages/About';
+import Register from './components/auth/Register';
+import Alerts from './components/layout/Alerts';
+
+import { UserContextProvider } from './context/UserContext';
 import { TransactionsContextProvider } from './context/TransactionsContext';
+import { AlertContextProvider } from './context/AlertContext';
+
 import './App.css';
 
 function App() {
   return (
-    <TransactionsContextProvider>
-      <div className='App'>
-        <Header />
-
-        <div className='container'>
-          <div className='trans-management-container'>
-            <Dashboard />
-            <TransAdd />
-          </div>
-          <div className='transaction-list-container'>
-            <TransList />
-          </div>
-        </div>
-      </div>
-    </TransactionsContextProvider>
+    <UserContextProvider>
+      <TransactionsContextProvider>
+        <AlertContextProvider>
+          <Router>
+            <Navbar />
+            <div className='App'>
+              <div className='container'>
+                <Alerts />
+                <Switch>
+                  <Route exact path='/' component={Home} />
+                  <Route exact path='/about' component={About} />
+                  <Route exact path='/register' component={Register} />
+                </Switch>
+              </div>
+            </div>
+          </Router>
+        </AlertContextProvider>
+      </TransactionsContextProvider>
+    </UserContextProvider>
   );
 }
 
