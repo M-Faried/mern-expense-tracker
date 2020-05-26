@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import Alerts from '../layout/Alerts';
 import { AlertContext } from '../../context/AlertContext';
 import { UserContext } from '../../context/UserContext';
 
@@ -42,6 +43,7 @@ const Login = (props) => {
 
   return (
     <div>
+      <Alerts />
       <form onSubmit={onSubmit} className='form-auth'>
         <h2>Account Login</h2>
         <div className='form-control'>
