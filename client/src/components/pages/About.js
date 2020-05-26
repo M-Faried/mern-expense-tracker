@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 const About = () => {
   return (
-    <Fragment>
+    <div>
       <h1>Expense Tracker</h1>
       <p>
         Expense tracker is an application that helps you track your expenses and
@@ -14,7 +14,7 @@ const About = () => {
           Contact Developer: m.faried.11111@gmail.com
         </a>
       </p>
-    </Fragment>
+    </div>
   );
 };
 
