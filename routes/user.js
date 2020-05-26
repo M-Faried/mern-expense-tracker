@@ -2,6 +2,7 @@ const express = require('express');
 const { check } = require('express-validator');
 const { checkValidationErrors } = require('../responses');
 const controller = require('../controllers/userCtrl');
+const authentication = require('../middleware/authentication');
 
 const router = express.Router();
 
@@ -21,7 +22,7 @@ router.post('/register', registerChecks, (req, res) => {
   controller.register(req, res);
 });
 
-// @route   /api/user/login
+// @route   POST /api/user/login
 // @desc    Creates the user token if the credentials are valid.
 // @access  Public
 const loginChecks = [
@@ -31,6 +32,13 @@ const loginChecks = [
 router.post('/login', loginChecks, (req, res) => {
   if (checkValidationErrors(req, res)) return;
   controller.login(req, res);
+});
+
+// @route GET /api/user
+// @desc Gets the current user using token.
+// @access private.
+router.get('/', authentication, (req, res) => {
+  controller.getUser(req, res);
 });
 
 module.exports = router;

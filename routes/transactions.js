@@ -16,11 +16,11 @@ router.get('/', authentication, (req, res) => {
 // @desc    Add transaction
 // @route   POST /api/transactions
 // @access  Private
-const postValidations = [
+const addTransValidations = [
   check('label', 'Label is required!').not().isEmpty(),
   check('amount', 'Amount is required!').not().isEmpty().isInt(),
 ];
-router.post('/', [authentication, postValidations], (req, res) => {
+router.post('/', [authentication, addTransValidations], (req, res) => {
   if (checkValidationErrors(req, res)) return;
   controller.addTransaction(req, res);
 });

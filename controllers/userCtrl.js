@@ -57,15 +57,23 @@ exports.login = async (req, res) => {
   }
 };
 
-///////////////////////////////////////////Helper Functions
+exports.getUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    sendSuccessData(res, { user });
+  } catch (err) {
+    sendServerError(res, err);
+  }
+};
+
+/////////////////////////////////////////// Helper Functions
 
 const sendUserToken = (res, id) => {
   const payload = { user: { id } };
-  console.log(process.env.jwtTokenExp);
   jwt.sign(
     payload,
-    process.env.jwtSecret,
-    { expiresIn: +process.env.jwtTokenExp },
+    process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_EXP },
     (err, token) => {
       if (err) throw err;
       else sendSuccessData(res, { token });

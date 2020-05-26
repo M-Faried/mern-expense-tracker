@@ -29,20 +29,6 @@ exports.addTransaction = async (req, res) => {
     sendSuccessData(res, { addedTransaction: transaction });
   } catch (err) {
     sendServerError(res, err);
-    // if (err.name === 'ValidationError') {
-    //   //Getting the validation errors of the schema.
-    //   const messages = Object.values(err.errors).map((e) => e.message);
-    //   return res.status(400).json({
-    //     success: false,
-    //     error: messages,
-    //   });
-    // } else {
-    //   // Sending the generic server error in this case.
-    //   return res.status(500).json({
-    //     success: false,
-    //     error: 'Server Error',
-    //   });
-    // }
   }
 };
 
