@@ -41,26 +41,15 @@ const Navbar = () => {
 
   return (
     <div className='navbar'>
-      <div style={logoContainerStyle}>
+      <div className='logo-container'>
         <Logo />
-        <span style={titleStyle}>
+        <span className='title'>
           <Link to='/about'> Expense Tracker</Link>
         </span>
       </div>
       <ul>{isAuthenticated ? authLinks : guestLinks}</ul>
     </div>
   );
-};
-
-const titleStyle = {
-  fontSize: '2rem',
-  fontWeight: 'bold',
-  padding: '5px',
-};
-
-const logoContainerStyle = {
-  display: 'flex',
-  marginLeft: '20px',
 };
 
 export default Navbar;

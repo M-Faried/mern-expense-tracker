@@ -27,7 +27,7 @@ const TransAdd = () => {
   return (
     <div className='add-transaction-container'>
       <h3>Add New Transaction</h3>
-      <form onSubmit={onSubmit} className='form-group'>
+      <form onSubmit={onSubmit} className='form-add-transaction'>
         <div className='form-control'>
           <label>Label</label>
           <input
