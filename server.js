@@ -17,6 +17,18 @@ connectDB();
 // Adding json body parser
 app.use(express.json()); //To allow us to use the body parts
 
+// Redirecting http calls to https.
+app.use((req, res, next) => {
+  if (req.headers['x-forwarded-proto'] === 'https') {
+    // request was via https, so do no special handling
+    return next();
+  } else {
+    // request was via http, so redirect to https
+    const redirUrl = `https://${req.headers.host}${req.url}`;
+    return res.redirect(redirUrl);
+  }
+});
+
 // Adding morgan logger only when we are in the development environment
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 

@@ -25,6 +25,9 @@ const Navbar = () => {
           <span className='hide-sm'>Logout</span>{' '}
         </a>
       </li>
+      <li>
+        <Link to='/about'>About</Link>
+      </li>
     </Fragment>
   );
 
@@ -35,6 +38,9 @@ const Navbar = () => {
       </li>
       <li>
         <Link to='/'>Login</Link>
+      </li>
+      <li>
+        <Link to='/about'>About</Link>
       </li>
     </Fragment>
   );

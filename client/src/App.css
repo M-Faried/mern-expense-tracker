@@ -328,3 +328,11 @@ input[type='password'] {
   background-color: red;
   color: white;
 }
+
+.about-page p {
+  font-size: 2rem;
+}
+
+.about-page a {
+  text-decoration: underline;
+}
