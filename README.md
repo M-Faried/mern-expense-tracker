@@ -14,4 +14,6 @@ Expense Tracker is a web application which enables users to track their income a
 
 - express-validation to validate api calls.
 
-### Deployed Project: [LINK](https://expense-tracker-11.herokuapp.com/)
+## Preview:
+![Screenshot](./screenshots/ExpenseTracker_02.PNG)
+![Screenshot](./screenshots/ExpenseTracker_01.PNG)
