@@ -21,3 +21,6 @@ Expense Tracker is a web application which enables users to track their income a
     <br>
     <img src="./screenshots/ExpenseTracker_01.PNG" alt="screen1" width="800"/>
 </p>
+
+## 💳 Contact Me:
+You can send me an email on **m.a.faried@gmail.com** or chat with me on my **[LinkedIn](https://www.linkedin.com/in/mo-faried-0258a445/)** profile.
