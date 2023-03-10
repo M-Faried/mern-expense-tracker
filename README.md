@@ -17,7 +17,7 @@ Expense Tracker is a web application which enables users to track their income a
 ## 📷 Preview:
 <br>
 <p align="center">
-    <img src="./screenshots/ExpenseTracker_02.PNG" alt="screen1" width="600"/>
+    <img src="./screenshots/ExpenseTracker_02.PNG" alt="screen1" width="800"/>
     <br>
-    <img src="./screenshots/ExpenseTracker_01.PNG" alt="screen1" width="600"/>
+    <img src="./screenshots/ExpenseTracker_01.PNG" alt="screen1" width="800"/>
 </p>
